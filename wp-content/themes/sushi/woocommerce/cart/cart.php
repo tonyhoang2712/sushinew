@@ -118,9 +118,16 @@ do_action( 'woocommerce_before_cart' ); ?>
 	a:visited {
     color: #B63241;
 	}
+	.entry-footer {
+		display: none;
+	}
 
-
-
+	#secondary {
+		display: none;
+	}
+	.page {
+	    margin: 0;
+	}
 </style>
 <div class="page-cart">
 	<div class="container">
