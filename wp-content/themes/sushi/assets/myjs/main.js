@@ -192,47 +192,137 @@ $('.group-tab-sushisashimi').click(function(e) {
     }
 })
 
-$( function( $ ) {
-  if ( ! String.prototype.getDecimals ) {
-    String.prototype.getDecimals = function() {
-      var num = this,
-      match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
-      if ( ! match ) {
-        return 0;
-      }
-      return Math.max( 0, ( match[1] ? match[1].length : 0 ) - ( match[2] ? +match[2] : 0 ) );
+// $( function( $ ) {
+//   if ( ! String.prototype.getDecimals ) {
+//     String.prototype.getDecimals = function() {
+//       var num = this,
+//       match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+//       if ( ! match ) {
+//         return 0;
+//       }
+//       return Math.max( 0, ( match[1] ? match[1].length : 0 ) - ( match[2] ? +match[2] : 0 ) );
+//     }
+//   }
+//         // Quantity "plus" and "minus" buttons
+//         $( document.body ).on( 'click', '.plus, .minus', function() {
+//           var $qty        = $( this ).closest( '.quantity' ).find( '.qty'),
+//           currentVal  = parseFloat( $qty.val() ),
+//           max         = parseFloat( $qty.attr( 'max' ) ),
+//           min         = parseFloat( $qty.attr( 'min' ) ),
+//           step        = $qty.attr( 'step' );
+
+//             // Format values
+//             if ( ! currentVal || currentVal === '' || currentVal === 'NaN' ) currentVal = 0;
+//             if ( max === '' || max === 'NaN' ) max = '';
+//             if ( min === '' || min === 'NaN' ) min = 0;
+//             if ( step === 'any' || step === '' || step === undefined || parseFloat( step ) === 'NaN' ) step = 1;
+
+//             // Change the value
+//             if ( $( this ).is( '.plus' ) ) {
+//               if ( max && ( currentVal >= max ) ) {
+//                 $qty.val( max );
+//               } else {
+//                 $qty.val( ( currentVal + parseFloat( step )).toFixed( step.getDecimals() ) );
+//               }
+//             } else {
+//               if ( min && ( currentVal <= min ) ) {
+//                 $qty.val( min );
+//               } else if ( currentVal > 0 ) {
+//                 $qty.val( ( currentVal - parseFloat( step )).toFixed( step.getDecimals() ) );
+//               }
+//             }
+
+//             // Trigger change event
+//             $qty.trigger( 'change' );
+//           });
+//       });
+
+
+
+$('.setsashimi-page-item').click(function (e) {
+    e.preventDefault();
+    var page = $(this).attr('index');
+    var current = $('.setsashimi-page-item.active').attr('index');
+    if(page == current) {
+        return false;
     }
-  }
-        // Quantity "plus" and "minus" buttons
-        $( document.body ).on( 'click', '.plus, .minus', function() {
-          var $qty        = $( this ).closest( '.quantity' ).find( '.qty'),
-          currentVal  = parseFloat( $qty.val() ),
-          max         = parseFloat( $qty.attr( 'max' ) ),
-          min         = parseFloat( $qty.attr( 'min' ) ),
-          step        = $qty.attr( 'step' );
+    $('.my-loading').show();
+    
+    $('.setsashimi-page-item').removeClass('active');
+    $('.setsashimi-page-item-' + page ).addClass('active');
 
-            // Format values
-            if ( ! currentVal || currentVal === '' || currentVal === 'NaN' ) currentVal = 0;
-            if ( max === '' || max === 'NaN' ) max = '';
-            if ( min === '' || min === 'NaN' ) min = 0;
-            if ( step === 'any' || step === '' || step === undefined || parseFloat( step ) === 'NaN' ) step = 1;
+    $.ajax({
+        type: "post",
+        url: AJAX_URL,
+        data: {
+            action:'get_setsashimi_content',
+            page: page,
+            terms: 'set-sashimi'
+        },
+        success: function(response){
+            $('.setsashimi-replace').html(response);
+        },
+        complete: function(res) {
+            $('.my-loading').hide();
+        }
+    });
+})
 
-            // Change the value
-            if ( $( this ).is( '.plus' ) ) {
-              if ( max && ( currentVal >= max ) ) {
-                $qty.val( max );
-              } else {
-                $qty.val( ( currentVal + parseFloat( step )).toFixed( step.getDecimals() ) );
-              }
-            } else {
-              if ( min && ( currentVal <= min ) ) {
-                $qty.val( min );
-              } else if ( currentVal > 0 ) {
-                $qty.val( ( currentVal - parseFloat( step )).toFixed( step.getDecimals() ) );
-              }
-            }
 
-            // Trigger change event
-            $qty.trigger( 'change' );
-          });
-      });
+$('.setsushibig-page-item').click(function (e) {
+    e.preventDefault();
+    var page = $(this).attr('index');
+    var current = $('.setsushibig-page-item.active').attr('index');
+    if(page == current) {
+        return false;
+    }
+    $('.my-loading').show();
+    
+    $('.setsushibig-page-item').removeClass('active');
+    $('.setsushibig-page-item-' + page ).addClass('active');
+
+    $.ajax({
+        type: "post",
+        url: AJAX_URL,
+        data: {
+            action:'get_setsushibig_content',
+            page: page,
+            terms: 'set-sushi-big'
+        },
+        success: function(response){
+            $('.setsushibig-replace').html(response);
+        },
+        complete: function(res) {
+            $('.my-loading').hide();
+        }
+    });
+})
+
+$('.setsushismall-page-item').click(function (e) {
+    e.preventDefault();
+    var page = $(this).attr('index');
+    var current = $('.setsushismall-page-item.active').attr('index');
+    if(page == current) {
+        return false;
+    }
+    $('.my-loading').show();
+    
+    $('.setsushismall-page-item').removeClass('active');
+    $('.setsushismall-page-item-' + page ).addClass('active');
+
+    $.ajax({
+        type: "post",
+        url: AJAX_URL,
+        data: {
+            action:'get_setsushismall_content',
+            page: page,
+            terms: 'set-sushi-small'
+        },
+        success: function(response){
+            $('.setsushismall-replace').html(response);
+        },
+        complete: function(res) {
+            $('.my-loading').hide();
+        }
+    });
+})

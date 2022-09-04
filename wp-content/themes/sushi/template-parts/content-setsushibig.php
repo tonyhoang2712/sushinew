@@ -1,3 +1,4 @@
+<div class="setsushibig-replace">
 <?php
     $args = array(
         'posts_per_page' => 5,
@@ -32,4 +33,29 @@
     }
     wp_reset_postdata();
     ?>
+</div>
+
+<?php if($total > 0) { ?>
+    <nav class="main-pagination setsushibig">
+        <ul class="pagination">
+            <li class="page-item setsushibig-page-item" index="1">
+                <a class="page-link page-previuos" href="javascript:void(0)">
+                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/next.png" class="previous">
+                </a>
+            </li>
+
+            <?php for($i = 0; $i < $total; $i++) { ?>
+            <li class="page-item setsushibig-page-item setsushibig-page-item-<?php echo $i + 1 ?> <?php if($i==0) {echo "active";} ?>"
+                index="<?php echo $i + 1 ?>">
+                <a class="page-link" href="javascript:void(0)"><?php echo $i+1 ?></a></li>
+            <?php } ?>
+
+            <li class="page-item setsushibig-page-item" 
+            index="<?php echo $total ?>">
+            <a class="page-link page-next" href="javascript:void(0)">
+                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/next.png" class="next"></a>
+            </li>
+        </ul>
+    </nav>
+<?php } ?>
 

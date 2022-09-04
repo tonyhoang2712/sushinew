@@ -26,16 +26,16 @@
             <li><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/Calling.png" alt=""><a href="tel:0964 883 997" class="text-white">Hotline: <b>0964 883 997</b></a></li>
             <li>
               <span class="zalo"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/zalo-white-1.png" alt=""><a href="tel:0964 883 997" class="text-white">0964 883 997</a></span>
-              <span class="facebook"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/facebook-1.png" alt=""><a href="tel:0964 883 997" class="text-white">fb/jirosushi</a></span>
+              <span class="facebook"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/facebook-1.png" alt=""><a href="https://www.facebook.com/profile.php?id=100079825395151" class="text-white">fb/jirosushi</a></span>
             </li>
           </ul>
         </div>
 
         <div class="col-lg-4 col-md-6 col-sm-12 pc-hidden">
           <ul class="footer-menu">
-            <li><a href="#" class="text-white">Trang chủ</a></li>
-            <li><a href="#" class="text-white">Thực đơn</a></li>
-            <li><a href="#" class="text-white">Đặt bàn</a></li>
+            <li><a href="<?php echo get_home_url(); ?>" class="text-white">Trang chủ</a></li>
+            <li><a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>" class="text-white">Thực đơn</a></li>
+            <li><a href="<?php echo get_home_url(); ?>#contact" class="text-white">Đặt bàn</a></li>
           </ul>
         </div>
 

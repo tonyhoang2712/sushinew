@@ -390,3 +390,111 @@ function custom_override_checkout_fields( $fields )
 	return $fields;
 }
 add_filter('woocommerce_checkout_fields','custom_override_checkout_fields');
+
+
+
+
+add_action( 'wp_ajax_get_setsashimi_content', 'get_setsashimi_content' );
+add_action( 'wp_ajax_nopriv_get_setsashimi_content', 'get_setsashimi_content' );
+function get_setsashimi_content() {
+  	$paged = intval( $_POST['page'] );
+  	$terms = $_POST['terms'];
+ 	$args = array(
+ 		'posts_per_page' => 5,
+ 		'post_type' => 'product',
+ 		'paged' => $paged,
+ 		'tax_query' => array(
+ 			array(
+ 				'taxonomy' => 'product_cat',
+ 				'field' => 'slug',
+ 				'terms' => $terms,
+ 			)
+ 		)
+ 	);
+
+ 	$query = new WP_Query($args);
+ 	if ($query->have_posts()) {
+ 		$i = 0;
+ 		while ($query->have_posts()) {
+ 			$query->the_post();
+ 			if($i == 4) {
+                get_template_part( 'template-parts/content', 'sushisashimi-style-2' );
+            } else {
+                get_template_part( 'template-parts/content', 'sushisashimi-style-1' );
+            }
+            $i++;
+ 		}
+ 	}
+    wp_reset_postdata();
+  die();
+}
+
+add_action( 'wp_ajax_get_setsushibig_content', 'get_setsushibig_content' );
+add_action( 'wp_ajax_nopriv_get_setsushibig_content', 'get_setsushibig_content' );
+function get_setsushibig_content() {
+  	$paged = intval( $_POST['page'] );
+  	$terms = $_POST['terms'];
+ 	$args = array(
+ 		'posts_per_page' => 5,
+ 		'post_type' => 'product',
+ 		'paged' => $paged,
+ 		'tax_query' => array(
+ 			array(
+ 				'taxonomy' => 'product_cat',
+ 				'field' => 'slug',
+ 				'terms' => $terms,
+ 			)
+ 		)
+ 	);
+
+ 	$query = new WP_Query($args);
+ 	if ($query->have_posts()) {
+ 		$i = 0;
+ 		while ($query->have_posts()) {
+ 			$query->the_post();
+ 			if($i == 4) {
+                get_template_part( 'template-parts/content', 'sushisashimi-style-2' );
+            } else {
+                get_template_part( 'template-parts/content', 'sushisashimi-style-1' );
+            }
+            $i++;
+ 		}
+ 	}
+    wp_reset_postdata();
+  die();
+}
+
+add_action( 'wp_ajax_get_setsushismall_content', 'get_setsushismall_content' );
+add_action( 'wp_ajax_nopriv_get_setsushismall_content', 'get_setsushismall_content' );
+function get_setsushismall_content() {
+  	$paged = intval( $_POST['page'] );
+  	$terms = $_POST['terms'];
+ 	$args = array(
+ 		'posts_per_page' => 5,
+ 		'post_type' => 'product',
+ 		'paged' => $paged,
+ 		'tax_query' => array(
+ 			array(
+ 				'taxonomy' => 'product_cat',
+ 				'field' => 'slug',
+ 				'terms' => $terms,
+ 			)
+ 		)
+ 	);
+
+ 	$query = new WP_Query($args);
+ 	if ($query->have_posts()) {
+ 		$i = 0;
+ 		while ($query->have_posts()) {
+ 			$query->the_post();
+ 			if($i == 4) {
+                get_template_part( 'template-parts/content', 'sushisashimi-style-2' );
+            } else {
+                get_template_part( 'template-parts/content', 'sushisashimi-style-1' );
+            }
+            $i++;
+ 		}
+ 	}
+    wp_reset_postdata();
+  die();
+}
