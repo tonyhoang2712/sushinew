@@ -1,0 +1,24 @@
+:root {
+  --color-F5AA2E: #F5AA2E;
+  --color-0086AA: #0086AA;
+  --color-002833: #002833;
+  --color-828282: #828282;
+}
+
+.breadcrumb-item > a {
+  color: var(--color-9999);
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  padding: 6px;
+  color: var(--bs-dark);
+  content: "";
+  border: solid var(--bs-gray);
+  border-width: 0 3px 3px 0;
+  border-radius: 0 0 5px 0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  margin: 4px 0 0;
+}
+.breadcrumb-item.active {
+  color: var(--bs-dark);
+}
